@@ -126,29 +126,107 @@ class ParametricCylinder(Operator):
         const.use_z = False
         const.owner_space = 'LOCAL'
         
-        height_Fc = ext.driver_add('thickness')
-        var_h = height_Fc.driver.variables.new()
+        height = ext.driver_add('thickness')
+        var_h = height.driver.variables.new()
         var_h.name = 'h'
         var_h.type = 'TRANSFORMS'
         var_h.targets[0].transform_type = 'LOC_Z'
         var_h.targets[0].transform_space = 'LOCAL_SPACE'
         var_h.targets[0].id = p_ctrl
-        height_Fc.driver.expression = 'h'
+        height.driver.expression = 'h'
         
         
                 
         return {'FINISHED'}            # Lets Blender know the operator finished successfully.
 
         
+class ParametricCuboid(Operator):
+    """Adds a parametric cuboid object"""           # Use this as a tooltip for menu items and buttons.
+    bl_idname   = "object.add_parametric_sphere"      # Unique identifier for buttons and menu items to reference.
+    bl_label    = "Add parametric Cuboid"              # Display name in the interface.
+    bl_options  = {'REGISTER', 'UNDO'}               # Enable undo for the operator.
+
+    def execute(self, context):                     # execute() is called when running the operator.
+        mesh = bpy.data.meshes.new("Cuboid")
+        mesh.from_pydata([(0.0, 0.0, 0.0)],[],[])
+        mesh.validate()
+        object_utils.object_data_add(context, mesh, operator=None)
+        obj = context.object
+        
+        vx = obj.data.vertices[0]
+        bpy.ops.object.empty_add(location=( 1.0, 1.0, 1.0 ))
+        p_ctrl = context.object
+        p_ctrl.parent = obj
+        
+        
+        bpy.context.view_layer.objects.active = obj
+        extX = obj.modifiers.new(type='SCREW', name='Extrude_X')
+        extX.axis = "X"
+        extX.angle = 0
+        extX.steps = 1
+        extX.screw_offset = 1.0
+        width = extX.driver_add('screw_offset')
+        var_x = width.driver.variables.new()
+        var_x.name = 'x'
+        var_x.type = 'TRANSFORMS'
+        var_x.targets[0].transform_type = 'LOC_X'
+        var_x.targets[0].transform_space = 'LOCAL_SPACE'
+        var_x.targets[0].id = p_ctrl
+        width.driver.expression = 'x'
+        
+        extY = obj.modifiers.new(type='SCREW', name='Extrude_Y')
+        extY.axis = "Y"
+        extY.angle = 0
+        extY.steps = 1
+        extY.screw_offset = 1.0
+        extY.use_normal_calculate = True
+        length = extY.driver_add('screw_offset')
+        var_y = length.driver.variables.new()
+        var_y.name = 'y'
+        var_y.type = 'TRANSFORMS'
+        var_y.targets[0].transform_type = 'LOC_Y'
+        var_y.targets[0].transform_space = 'LOCAL_SPACE'
+        var_y.targets[0].id = p_ctrl
+        length.driver.expression = 'y'
+        
+        extZ = obj.modifiers.new(type='SOLIDIFY', name='Extrude_Z')
+        extZ.thickness = 1.0
+        extZ.offset = 1
+        height = extZ.driver_add('thickness')
+        var_z = height.driver.variables.new()
+        var_z.name = 'z'
+        var_z.type = 'TRANSFORMS'
+        var_z.targets[0].transform_type = 'LOC_Z'
+        var_z.targets[0].transform_space = 'LOCAL_SPACE'
+        var_z.targets[0].id = p_ctrl
+        height.driver.expression = 'z'
+  
+        
+        #const = p_radius.constraints.new('LIMIT_LOCATION')
+        #const.use_min_x = True
+        #const.use_max_x = True
+        #const.use_min_y = True
+        #const.use_max_y = True
+        #const.owner_space = 'LOCAL'
+        p_ctrl.empty_display_type= 'PLAIN_AXES'
+        p_ctrl.empty_display_size= 0.5
+        p_ctrl.lock_location  = [False, False, False]
+        p_ctrl.lock_rotation  = [True, True, True]
+        p_ctrl.lock_scale     = [True, True, True]
+                
+        return {'FINISHED'}            # Lets Blender know the operator finished successfully.
+        
 def register():
     bpy.utils.register_class(ParametricSphere)
     bpy.utils.register_class(ParametricCylinder)
-
+    bpy.utils.register_class(ParametricCuboid)
+    
 
 def unregister():
     bpy.utils.unregister_class(ParametricSphere)
     bpy.utils.unregister_class(ParametricCylinder)
-
+    bpy.utils.unregister_class(ParametricCuboid)
+    
 
 # This allows you to run the script directly from Blender's Text editor
 # to test the add-on without having to install it.
