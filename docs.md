@@ -13,7 +13,10 @@ As of now, three parametric primitive types are supported:
 * ***Sphere***
 * ***Cylinder***
 * ***Cuboid***
-![adding a parametric sphere](examples/sphere.gif)![adding a parametric cylinder](examples/cylinder.gif)![adding a parametric cuboid](examples/cuboid.gif)
+
+![adding a parametric sphere](examples/sphere.gif)
+![adding a parametric cylinder](examples/cylinder.gif)
+![adding a parametric cuboid](examples/cuboid.gif)
 
 ## Installation
 In order to install, simply download the `B4NGN.py` file to your computer, and use Blender's internal add-on installation utility:
