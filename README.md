@@ -24,9 +24,9 @@ This add-on adds parametric objects which can be edited non-destructively.
 ### Adding an object
 
 The addition parametric geometric primitives is implemented as a set of blender `Operators`. By default, there is no shortcut assigned, so you will have to hit `F3` on your keyboard to bring up a searchbox, in which you should type `Add par...` and the following 3 results will show up:
-	* `Add parametric Sphere`
-	* `Add parametric Cylinder`
-	* `Add parametic Cuboid`
+* `Add parametric Sphere`
+* `Add parametric Cylinder`
+* `Add parametic Cuboid`
 	
 Highlighting one of them and hitting `ENTER` will execute the operator, and add the corresponding parametric primitive to your blender scene.
 
@@ -37,7 +37,7 @@ Simply manipulating the position in space of the control point changes the corre
 
 #### Sphere
 	
-The sphere has a single control point: moving it further from the sphere origin increases the radius.
+The sphere has a control point with one degree of freedom: moving it further from the sphere origin increases the radius.
 
 #### Cylinder
 
