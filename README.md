@@ -8,9 +8,9 @@ This Blender add-on provides easily-accessible shortcuts for parametric geometri
 
 As of now, three parametric primmitive types are supported:
 
-* Sphere ![]
-* Cylinder ![]
-* Cuboid ![]
+* Sphere ![adding a parametric sphere](examples/sphere.gif)
+* Cylinder ![adding a parametric cylinder](examples/cylinder.gif)
+* Cuboid ![adding a parametric cuboid](examples/cuboid.gif)
 
 ## Installation
 	
@@ -19,7 +19,30 @@ Click `Edit`>`Prefferences`, go to the `Add-ons` tab and click the `Install` but
 
 ## Usage
 
+This add-on adds parametric objects which can be edited non-destructively.
+
+### Adding an object
+
 The addition parametric geometric primitives is implemented as a set of blender `Operators`. By default, there is no shortcut assigned, so you will have to hit `F3` on your keyboard to bring up a searchbox, in which you should type `Add par...` and the following 3 results will show up:
-		* `Add parametric Sphere`
-		* `Add parametric Cylinder`
-		* `Add parametic Cuboid`
+	* `Add parametric Sphere`
+	* `Add parametric Cylinder`
+	* `Add parametic Cuboid`
+	
+Highlighting one of them and hitting `ENTER` will execute the operator, and add the corresponding parametric primitive to your blender scene.
+
+### Manipulating added objects
+
+Each parametric primitive has **control points** which define it's geometry. 
+Simply manipulating the position in space of the control point changes the corresponding object's geometry. This is a completley non-destructive process. You can always come back to that object and change it's shape. 
+
+#### Sphere
+	
+The sphere has a single control point: moving it further from the sphere origin increases the radius.
+
+#### Cylinder
+
+The cylinder has a control point with two degrees of freedom: moving it horizontally away from the origin increases it's radius, and moving it vertically changes the cylinder's height
+
+#### Cuboid
+
+The cuboid object has a control point with 3 degrees of freedom. It defines the opposite corner of the cuboid in local carthesian coordinates
