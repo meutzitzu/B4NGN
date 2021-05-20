@@ -10,8 +10,10 @@ This Blender add-on provides easily-accessible shortcuts for parametric geometri
 ## Features
 
 As of now, three parametric primitive types are supported:
-
-Sphere ![adding a parametric sphere](examples/sphere.gif) Cylinder ![adding a parametric cylinder](examples/cylinder.gif) Cuboid ![adding a parametric cuboid](examples/cuboid.gif)
+* ***Sphere***
+* ***Cylinder***
+* ***Cuboid***
+![adding a parametric sphere](examples/sphere.gif)![adding a parametric cylinder](examples/cylinder.gif)![adding a parametric cuboid](examples/cuboid.gif)
 
 ## Installation
 In order to install, simply download the `B4NGN.py` file to your computer, and use Blender's internal add-on installation utility:
@@ -129,6 +131,7 @@ We now add an empty object (an Empty object in Blender is an object which has no
 ***This is where the fun begins***
 We now have an object that has a single vertex along the Z axis, whose distance we can control by moving an empty.
 Next, we will turn this into a sphere: We will add two **screw modifiers**, with which we will revolve our vertex first along the Y axis, in order to create a semicircle, and then revolve the result along the Z axis to complete our sphere.
+![](/examples/sphere_generate.gif)
 ```python
         bpy.context.view_layer.objects.active = obj
         revU = obj.modifiers.new(type='SCREW', name='Revolution_U')
@@ -156,6 +159,7 @@ This is done because if a user might accidentally move the empty in other direct
 The following classes are analogous, but we use a single revolution and an extrusion to create the cylinder, and 3 consecutive and perpendicular extrusions to create the cuboid. 
 
 ##### The ParametricCylinder operator
+![](/examples/cylinder_generate.gif)
 ```python
 class ParametricCylinder(Operator):
     """Adds a cylinder object"""           # Use this as a tooltip for menu items and buttons.
@@ -237,6 +241,7 @@ class ParametricCylinder(Operator):
 ```
 
 ##### The Parametric Cuboid operator
+![](/examples/cuboid_generate.gif)
 ```python
 class ParametricCuboid(Operator):
     """Adds a parametric cuboid object"""           # Use this as a tooltip for menu items and buttons.
