@@ -63,7 +63,7 @@ class ParametricSphere(Operator):
         
 class ParametricCylinder(Operator):
     """Adds a cylinder object"""           # Use this as a tooltip for menu items and buttons.
-    bl_idname = "object.add_cylinder_sphere"      # Unique identifier for buttons and menu items to reference.
+    bl_idname = "object.add_parametric_sphere"      # Unique identifier for buttons and menu items to reference.
     bl_label = "Add parametric Cylinder"              # Display name in the interface.
     bl_options = {'REGISTER', 'UNDO'}               # Enable undo for the operator.
 
@@ -142,7 +142,7 @@ class ParametricCylinder(Operator):
         
 class ParametricCuboid(Operator):
     """Adds a parametric cuboid object"""           # Use this as a tooltip for menu items and buttons.
-    bl_idname   = "object.add_parametric_sphere"      # Unique identifier for buttons and menu items to reference.
+    bl_idname   = "object.add_parametric_cuboid"      # Unique identifier for buttons and menu items to reference.
     bl_label    = "Add parametric Cuboid"              # Display name in the interface.
     bl_options  = {'REGISTER', 'UNDO'}               # Enable undo for the operator.
 
